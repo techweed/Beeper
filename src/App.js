@@ -50,7 +50,7 @@ function SignIn() {
       <button className="sign-in" onClick={signInWithGoogle}>
         Sign in with Google
       </button>
-      <p>Chat with starngers from all around the world</p>
+      <p>Chat with strangers from all around the world</p>
     </>
   );
 }

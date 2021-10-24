@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, {useRef, useState} from "react";
 import "./App.css";
 
 import firebase from "firebase/compat/app";
@@ -6,8 +6,8 @@ import "firebase/compat/firestore";
 import "firebase/compat/auth";
 import "firebase/compat/analytics";
 
-import { useAuthState } from "react-firebase-hooks/auth";
-import { useCollectionData } from "react-firebase-hooks/firestore";
+import {useAuthState} from "react-firebase-hooks/auth";
+import {useCollectionData} from "react-firebase-hooks/firestore";
 
 firebase.initializeApp({
   apiKey: "AIzaSyABH8-5bGyDmUSt--hvLbVGoXyFAvWA0yQ",
@@ -50,9 +50,7 @@ function SignIn() {
       <button className="sign-in" onClick={signInWithGoogle}>
         Sign in with Google
       </button>
-      <p>
-        Do not violate the community guidelines or you will be banned for life!
-      </p>
+      <p>Chat with starngers from all around the world</p>
     </>
   );
 }
@@ -74,7 +72,7 @@ function ChatRoom() {
   //queryy the recent messages
   const query = messagesRef.orderBy("createdAt").limit(25);
   //listen to data with a hook, reacts in realtime
-  const [messages] = useCollectionData(query, { idField: "id" });
+  const [messages] = useCollectionData(query, {idField: "id"});
 
   const [formValue, setFormValue] = useState("");
 
@@ -82,7 +80,7 @@ function ChatRoom() {
     //prevent refesh of page on submit
     e.preventDefault();
 
-    const { uid, photoURL } = auth.currentUser;
+    const {uid, photoURL} = auth.currentUser;
     // create new document in firestore
     await messagesRef.add({
       text: formValue,
@@ -92,7 +90,7 @@ function ChatRoom() {
     });
 
     setFormValue("");
-    dummy.current.scrollIntoView({ behavior: "smooth" });
+    dummy.current.scrollIntoView({behavior: "smooth"});
   };
 
   return (
@@ -121,7 +119,7 @@ function ChatRoom() {
 }
 
 function ChatMessage(props) {
-  const { text, uid, photoURL } = props.message;
+  const {text, uid, photoURL} = props.message;
 
   //distinguish between send and received messages
   const messageClass = uid === auth.currentUser.uid ? "sent" : "received";
